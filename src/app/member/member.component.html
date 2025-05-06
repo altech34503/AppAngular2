@@ -9,7 +9,6 @@
 >
   <thead style="background-color: #f2f2f2">
     <tr>
-      <th>ID</th>
       <th>Email</th>
       <th>Type</th>
       <th>Headquarter</th>
@@ -19,7 +18,6 @@
   <tbody>
     @for (member of members; track member.memberId) {
     <tr>
-      <td>{{ member.memberId }}</td>
       <td>{{ member.memberEmail }}</td>
       <td>{{ member.memberType }}</td>
       <td>{{ member.memberAddress }}</td>

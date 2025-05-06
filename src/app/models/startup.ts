@@ -1,8 +1,8 @@
 export interface Startup {
   MemberId: number;
-  NameStartup: string;
-  OverviewStartup: string;
-  CountryId: number;
-  IndustryId: number;
-  InvestmentSizeId: number;
+  nameStartup: string;
+  overviewStartup: string;
+  countryId: number;
+  industryId: number;
+  investmentSizeId: number;
 }
