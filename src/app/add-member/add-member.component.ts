@@ -14,7 +14,7 @@ import { MatRadioModule } from '@angular/material/radio';
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
+    FormsModule, // Required for template-driven forms
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -34,6 +34,9 @@ import { MatRadioModule } from '@angular/material/radio';
         <mat-radio-button value="Investor">Investor</mat-radio-button>
         <mat-radio-button value="Startup">Startup</mat-radio-button>
       </mat-radio-group>
+      <mat-error *ngIf="!member.memberType && memberForm.submitted">
+        Member type is required.
+      </mat-error>
 
       <!-- Email -->
       <mat-form-field appearance="fill" class="form-field">
@@ -45,7 +48,12 @@ import { MatRadioModule } from '@angular/material/radio';
           [(ngModel)]="member.memberEmail"
           placeholder="example@domain.com"
           required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         />
+        <mat-error *ngIf="memberForm.submitted && memberForm.controls['memberEmail']?.invalid">
+          <span *ngIf="memberForm.controls['memberEmail']?.errors?.['required']">Email is required.</span>
+          <span *ngIf="memberForm.controls['memberEmail']?.errors?.['pattern']">Enter a valid email address.</span>
+        </mat-error>
       </mat-form-field>
 
       <!-- Address -->
@@ -58,7 +66,14 @@ import { MatRadioModule } from '@angular/material/radio';
           [(ngModel)]="member.memberAddress"
           placeholder="City, Country"
           required
+          pattern="^[a-zA-Z\s,'-]+$"
         />
+        <mat-error *ngIf="memberForm.submitted && memberForm.controls['memberAddress']?.invalid">
+          <span *ngIf="memberForm.controls['memberAddress']?.errors?.['required']">Address is required.</span>
+          <span *ngIf="memberForm.controls['memberAddress']?.errors?.['pattern']">
+            Address must only contain letters, spaces, commas, hyphens, or apostrophes.
+          </span>
+        </mat-error>
       </mat-form-field>
 
       <!-- Phone -->
@@ -71,7 +86,14 @@ import { MatRadioModule } from '@angular/material/radio';
           [(ngModel)]="member.memberPhone"
           placeholder="+123 4567890"
           required
+          pattern="^\+\d{1,3}\s\d{4,14}$"
         />
+        <mat-error *ngIf="memberForm.submitted && memberForm.controls['memberPhone']?.invalid">
+          <span *ngIf="memberForm.controls['memberPhone']?.errors?.['required']">Phone number is required.</span>
+          <span *ngIf="memberForm.controls['memberPhone']?.errors?.['pattern']">
+            Enter a valid phone number (e.g., +123 4567890).
+          </span>
+        </mat-error>
       </mat-form-field>
 
       <!-- Submit Button -->
@@ -85,12 +107,12 @@ import { MatRadioModule } from '@angular/material/radio';
       </button>
     </form>
   `,
-  styleUrl: './add-member.component.css',
+  styleUrls: ['./add-member.component.css'],
 })
 export class AddMemberComponent {
   member: Member = {
     memberId: 0,
-    memberType: 'Startup',
+    memberType: 'Investor',
     memberEmail: '',
     memberAddress: '',
     memberPhone: '',
@@ -99,8 +121,19 @@ export class AddMemberComponent {
   constructor(private memberService: MemberService, private router: Router) {}
 
   addMember() {
-    this.memberService.addMember(this.member).subscribe(() => {
-      this.router.navigate(['/members']);
-    });
+    if (this.member.memberType && this.member.memberEmail && this.member.memberAddress && this.member.memberPhone) {
+      console.log('Form Submitted:', this.member); // Debugging statement
+      this.memberService.addMember(this.member).subscribe(
+        (response) => {
+          console.log('Member added successfully:', response);
+          this.router.navigate(['/members']); // Redirect to the members list
+        },
+        (error) => {
+          console.error('Error adding member:', error);
+        }
+      );
+    } else {
+      console.error('Form is invalid. Please fill out all required fields.');
+    }
   }
 }
