@@ -1,49 +1,65 @@
-<form #memberForm="ngForm" (ngSubmit)="addMember()" class="member-form">
+<form [formGroup]="memberForm" (ngSubmit)="addMember()" class="member-form">
   <h2>Add New Member</h2>
 
+  <!-- Member Type -->
   <mat-radio-group
     aria-label="Select member type"
-    [(ngModel)]="member.memberType"
-    name="memberType"
-    required
+    formControlName="memberType"
   >
     <mat-radio-button value="Investor">Investor</mat-radio-button>
     <mat-radio-button value="Startup">Startup</mat-radio-button>
   </mat-radio-group>
+  <mat-error *ngIf="memberForm.get('memberType')?.invalid && memberForm.get('memberType')?.touched">
+    Member type is required.
+  </mat-error>
 
+  <!-- Email -->
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Email</mat-label>
     <input
       matInput
       type="email"
-      name="memberEmail"
-      [(ngModel)]="member.memberEmail"
-      required
+      formControlName="memberEmail"
     />
+    <mat-error *ngIf="memberForm.get('memberEmail')?.invalid && memberForm.get('memberEmail')?.touched">
+      <span *ngIf="memberForm.get('memberEmail')?.errors?.['required']">Email is required.</span>
+      <span *ngIf="memberForm.get('memberEmail')?.errors?.['email']">Enter a valid email address.</span>
+    </mat-error>
   </mat-form-field>
 
+  <!-- Address -->
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Address</mat-label>
     <input
       matInput
       type="text"
-      name="memberAddress"
-      [(ngModel)]="member.memberAddress"
-      required
+      formControlName="memberAddress"
     />
+    <mat-error *ngIf="memberForm.get('memberAddress')?.invalid && memberForm.get('memberAddress')?.touched">
+      <span *ngIf="memberForm.get('memberAddress')?.errors?.['required']">Address is required.</span>
+      <span *ngIf="memberForm.get('memberAddress')?.errors?.['pattern']">
+        Address must be in the format 'City, Country'.
+      </span>
+    </mat-error>
   </mat-form-field>
 
+  <!-- Phone -->
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Phone</mat-label>
     <input
       matInput
       type="text"
-      name="memberPhone"
-      [(ngModel)]="member.memberPhone"
-      required
+      formControlName="memberPhone"
     />
+    <mat-error *ngIf="memberForm.get('memberPhone')?.invalid && memberForm.get('memberPhone')?.touched">
+      <span *ngIf="memberForm.get('memberPhone')?.errors?.['required']">Phone number is required.</span>
+      <span *ngIf="memberForm.get('memberPhone')?.errors?.['pattern']">
+        Phone number must include a country code (e.g., +254 712345678).
+      </span>
+    </mat-error>
   </mat-form-field>
 
+  <!-- Submit Button -->
   <button
     mat-raised-button
     color="primary"

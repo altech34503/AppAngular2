@@ -20,7 +20,71 @@ import { MatRadioModule } from '@angular/material/radio';
     MatButtonModule,
     MatRadioModule,
   ],
-  templateUrl: './add-member.component.html',
+  template: `
+    <form #memberForm="ngForm" (ngSubmit)="addMember()" class="member-form">
+      <h2>Add New Member</h2>
+
+      <!-- Member Type -->
+      <mat-radio-group
+        aria-label="Select member type"
+        [(ngModel)]="member.memberType"
+        name="memberType"
+        required
+      >
+        <mat-radio-button value="Investor">Investor</mat-radio-button>
+        <mat-radio-button value="Startup">Startup</mat-radio-button>
+      </mat-radio-group>
+
+      <!-- Email -->
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          name="memberEmail"
+          [(ngModel)]="member.memberEmail"
+          placeholder="example@domain.com"
+          required
+        />
+      </mat-form-field>
+
+      <!-- Address -->
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Address</mat-label>
+        <input
+          matInput
+          type="text"
+          name="memberAddress"
+          [(ngModel)]="member.memberAddress"
+          placeholder="City, Country"
+          required
+        />
+      </mat-form-field>
+
+      <!-- Phone -->
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Phone</mat-label>
+        <input
+          matInput
+          type="text"
+          name="memberPhone"
+          [(ngModel)]="member.memberPhone"
+          placeholder="+123 4567890"
+          required
+        />
+      </mat-form-field>
+
+      <!-- Submit Button -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="memberForm.invalid"
+      >
+        Add Member
+      </button>
+    </form>
+  `,
   styleUrl: './add-member.component.css',
 })
 export class AddMemberComponent {
