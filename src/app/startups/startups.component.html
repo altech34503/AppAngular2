@@ -1,0 +1,46 @@
+<section class="container py-4">
+  <h2 class="mb-4 text-center">Startup Dashboard</h2>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="mb-4"
+    (click)="createStartup()"
+  >
+    <mat-icon>add</mat-icon> Add Startup
+  </button>
+
+  <div class="card-grid">
+    @for (s of startups; track s.MemberId) {
+    <mat-card class="startup-card">
+      <mat-card-header>
+        <mat-card-title>{{ s.nameStartup }}</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>{{ s.overviewStartup }}</p>
+        <p><strong>Country:</strong> {{ s.countryId }}</p>
+        <p><strong>Industry:</strong> {{ s.industryId }}</p>
+        <p><strong>Investment Size:</strong> {{ s.investmentSizeId }}</p>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button
+          mat-stroked-button
+          color="accent"
+          (click)="editStartup(s.MemberId)"
+        >
+          <mat-icon>edit</mat-icon> Edit
+        </button>
+        <button
+          mat-stroked-button
+          color="warn"
+          (click)="deleteStartup(s.MemberId)"
+        >
+          <mat-icon>delete</mat-icon> Delete
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    }
+  </div>
+</section>

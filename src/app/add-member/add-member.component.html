@@ -1,5 +1,6 @@
-<form [formGroup]="memberForm" (ngSubmit)="addMember()" class="member-form">
-  <h2>Add New Member</h2>
+
+<form #memberForm="ngForm" (ngSubmit)="addMember()" class="member-form">
+  <h2 style="font-size: xx-large; color: brown">Sign up in the form below!</h2>
 
   <!-- Member Type -->
   <mat-radio-group

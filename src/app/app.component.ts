@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MemberComponent } from './member/member.component';
 import { EditMemberComponent } from './edit-member/edit-member.component';
+import { StartupsComponent } from './startups/startups.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
@@ -32,6 +33,7 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     MatRadioModule,
     FormsModule,
+    StartupsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
