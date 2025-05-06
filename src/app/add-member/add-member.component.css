@@ -1,0 +1,18 @@
+.member-form {
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column !important;
+  gap: 16px;
+}
+
+.member-form mat-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.form-field {
+  width: 100%;
+}

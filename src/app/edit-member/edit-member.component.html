@@ -1,0 +1,88 @@
+<form #memberForm="ngForm" (ngSubmit)="updateMember()">
+  <p>edit-member {{ id }} works</p>
+
+  <!-- ID display -->
+  <div>
+    id: <span>{{ member.memberId }}</span>
+  </div>
+
+  <!-- Type -->
+  <div>
+    Type:
+    <label>
+      <input
+        type="radio"
+        name="memberType"
+        [(ngModel)]="member.memberType"
+        value="startup"
+        required
+        #memberType="ngModel"
+      />
+      Startup
+    </label>
+    <label>
+      <input
+        type="radio"
+        name="memberType"
+        [(ngModel)]="member.memberType"
+        value="investor"
+        required
+      />
+      Investor
+    </label>
+    <div *ngIf="memberType.invalid && memberType.touched">Type is required</div>
+  </div>
+
+  <!-- Email -->
+  <div>
+    Email:
+    <input
+      type="text"
+      name="memberEmail"
+      [(ngModel)]="member.memberEmail"
+      required
+      #memberEmail="ngModel"
+    />
+    <div *ngIf="memberEmail.invalid && memberEmail.touched">
+      Email is required
+    </div>
+  </div>
+
+  <!-- Address -->
+  <div>
+    Headquarter:
+    <input
+      type="text"
+      name="memberAddress"
+      [(ngModel)]="member.memberAddress"
+      required
+      #memberAddress="ngModel"
+    />
+    <div *ngIf="memberAddress.invalid && memberAddress.touched">
+      Address is required
+    </div>
+  </div>
+
+  <!-- Phone -->
+  <div>
+    Phone:
+    <input
+      type="text"
+      name="memberPhone"
+      [(ngModel)]="member.memberPhone"
+      required
+      #memberPhone="ngModel"
+    />
+    <div *ngIf="memberPhone.invalid && memberPhone.touched">
+      Phone is required
+    </div>
+  </div>
+
+  <!-- Error Summary -->
+  <div *ngIf="memberForm.invalid && memberForm.touched">
+    Error in data entered
+  </div>
+
+  <!-- Submit -->
+  <button type="submit" [disabled]="memberForm.invalid">Update</button>
+</form>

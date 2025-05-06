@@ -1,0 +1,85 @@
+<!--- <nav class="navbar">
+  <a routerLink="/">Homepage</a>
+  <a routerLink="/startups">List of startups</a>
+  <a routerLink="/register">Registration</a>
+  <a routerLink="/member">Member</a>
+</nav>
+-->
+
+<!-- home.component.html -->
+<div class="home-container">
+  <mat-card class="hero-card">
+    <mat-card-header>
+      <mat-card-title>Welcome!</mat-card-title>
+      <mat-card-subtitle>
+        Connecting creative startups with investors worldwide</mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Explore innovative startups in the creative industry and discover
+        investment opportunities.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        class="cute-button"
+        color="primary"
+        routerLink="/member"
+      >
+        <span class="emoji">🚀</span>
+        Browse Members
+      </button>
+      <button
+        mat-raised-button
+        class="cute-button"
+        color="accent"
+        routerLink="/add-member"
+      >
+        <span class="emoji">📝</span>
+        Sign Up
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <div class="info-grid">
+    <mat-card class="info-card">
+      <mat-icon fontIcon="lightbulb_outline" class="info-icon"></mat-icon>
+      <mat-card-title>Discover Ideas</mat-card-title>
+      <mat-card-content>
+        Find creative startups solving real-world problems.
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="info-card">
+      <mat-icon fontIcon="trending_up" class="info-icon"></mat-icon>
+      <mat-card-title>Investment Insights</mat-card-title>
+      <mat-card-content>
+        Get data-driven insights on funding trends.
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="info-card">
+      <mat-icon fontIcon="people" class="info-icon"></mat-icon>
+      <mat-card-title>Join the Community</mat-card-title>
+      <mat-card-content>
+        Connect with founders and fellow investors.
+      </mat-card-content>
+    </mat-card>
+    <!-- Social Networks Card -->
+    <mat-card class="info-card social-card">
+      <mat-card-title>Follow Us</mat-card-title>
+      <mat-card-content>
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+            <mat-icon fontIcon="facebook"></mat-icon>
+          </a>
+          <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+            <mat-icon fontIcon="linkedin"></mat-icon>
+          </a>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

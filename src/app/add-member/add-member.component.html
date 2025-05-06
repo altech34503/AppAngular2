@@ -1,0 +1,55 @@
+<form #memberForm="ngForm" (ngSubmit)="addMember()" class="member-form">
+  <h2>Add New Member</h2>
+
+  <mat-radio-group
+    aria-label="Select member type"
+    [(ngModel)]="member.memberType"
+    name="memberType"
+    required
+  >
+    <mat-radio-button value="Investor">Investor</mat-radio-button>
+    <mat-radio-button value="Startup">Startup</mat-radio-button>
+  </mat-radio-group>
+
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label>Email</mat-label>
+    <input
+      matInput
+      type="email"
+      name="memberEmail"
+      [(ngModel)]="member.memberEmail"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label>Address</mat-label>
+    <input
+      matInput
+      type="text"
+      name="memberAddress"
+      [(ngModel)]="member.memberAddress"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label>Phone</mat-label>
+    <input
+      matInput
+      type="text"
+      name="memberPhone"
+      [(ngModel)]="member.memberPhone"
+      required
+    />
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="memberForm.invalid"
+  >
+    Add Member
+  </button>
+</form>

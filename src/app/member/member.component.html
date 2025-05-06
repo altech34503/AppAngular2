@@ -1,0 +1,50 @@
+<h2 style="font-size: 2.5rem; color: #000000">Registered Members</h2>
+
+<table
+  class="member-table"
+  border="1"
+  cellpadding="10"
+  cellspacing="0"
+  style="width: 100%; border-collapse: collapse"
+>
+  <thead style="background-color: #f2f2f2">
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Type</th>
+      <th>Headquarter</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (member of members; track member.memberId) {
+    <tr>
+      <td>{{ member.memberId }}</td>
+      <td>{{ member.memberEmail }}</td>
+      <td>{{ member.memberType }}</td>
+      <td>{{ member.memberAddress }}</td>
+      <td>{{ member.memberPhone }}</td>
+      <td class="action-buttons">
+        <button
+          mat-raised-button
+          color="warn"
+          class="cute-mat-btn-delete"
+          (click)="deleteMember(member.memberId)"
+        >
+          <mat-icon>delete</mat-icon>
+          Delete
+        </button>
+        <button
+          mat-raised-button
+          color="accent"
+          class="cute-mat-btn-edit"
+          (click)="editMember(member.memberId)"
+        >
+          <mat-icon>edit</mat-icon>
+          Edit
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
