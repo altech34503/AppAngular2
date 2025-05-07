@@ -64,7 +64,8 @@ export class EditInvestorComponent implements OnInit {
 
   updateInvestor(): void {
     if (this.investor.id) {
-      this.investorsService.updateInvestor(this.investor.id, this.investor).subscribe(
+      console.log('Payload being sent:', this.investor); // Debugging log
+      this.investorsService.updateInvestor(this.investor).subscribe(
         (response) => {
           console.log('Investor updated successfully:', response);
           this.router.navigate(['/investors']); // Redirect to the investors list

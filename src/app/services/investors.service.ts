@@ -25,8 +25,8 @@ export class InvestorsService {
   }
 
   // Update an existing investor
-  updateInvestor(id: number, investor: Investor): Observable<Investor> {
-    return this.http.put<Investor>(`${this.apiUrl}/investor/${id}`, investor);
+  updateInvestor(investor: Investor): Observable<Investor> {
+    return this.http.put<Investor>(`${this.apiUrl}/investor`, investor);
   }
 
   // Add a new investor
