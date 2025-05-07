@@ -1,0 +1,77 @@
+<section class="container py-4">
+  <h2 class="mb-4 text-center">Investor Dashboard</h2>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="mb-4"
+    (click)="createInvestor()"
+  >
+    <mat-icon>add</mat-icon> Add Investor
+  </button>
+
+  <div class="card-grid">
+    <mat-card *ngFor="let investor of investors; trackBy: trackByMemberId" class="investor-card">
+      <mat-card-header>
+        <mat-card-title>{{ investor.name_Investor }}</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>{{ investor.overview_Investor }}</p>
+        <p>
+          <strong>Country:</strong>
+          {{
+            investor.country_Id === 1
+              ? "USA"
+              : investor.country_Id === 2
+              ? "Canada"
+              : investor.country_Id === 3
+              ? "South Africa"
+              : "Unknown"
+          }}
+        </p>
+        <p>
+          <strong>Industry:</strong>
+          {{
+            investor.industry_Id === 1
+              ? "Technology"
+              : investor.industry_Id === 2
+              ? "Healthcare"
+              : investor.industry_Id === 3
+              ? "Finance"
+              : "Unknown"
+          }}
+        </p>
+        <p>
+          <strong>Investment Size:</strong>
+          {{
+            investor.investment_Size_Id === 1
+              ? "Small"
+              : investor.investment_Size_Id === 2
+              ? "Medium"
+              : investor.investment_Size_Id === 3
+              ? "Large"
+              : "Unknown"
+          }}
+        </p>
+      </mat-card-content>
+
+      <mat-card-actions align="end" *ngIf="investor.member_Id !== undefined">
+        <button
+          mat-stroked-button
+          color="accent"
+          (click)="editInvestor(investor.member_Id)"
+        >
+          <mat-icon>edit</mat-icon> Edit
+        </button>
+        <button
+          mat-stroked-button
+          color="warn"
+          (click)="deleteInvestor(investor.member_Id)"
+        >
+          <mat-icon>delete</mat-icon> Delete
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</section>

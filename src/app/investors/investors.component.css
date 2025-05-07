@@ -10,12 +10,25 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
-    overflow: hidden;
-    background-color: #ffffff;
 }
 
 /* Hover effect for startup cards */
 .startup-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for individual investor cards */
+.investor-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+/* Hover effect for investor cards */
+.investor-card:hover {
     transform: translateY(-5px) scale(1.02);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
@@ -27,7 +40,7 @@ mat-card-actions {
     padding: 16px;
 }
 
-/* Styling for the Add Startup button */
+/* Styling for the Add Investor button */
 button[mat-raised-button] {
     margin-bottom: 16px;
 }
@@ -47,7 +60,7 @@ h2 {
     padding: 20px;
 }
 
-/* Add spacing between cards and the Add Startup button */
+/* Add spacing between cards and the Add Investor button */
 .mb-4 {
     margin-bottom: 24px;
 }
