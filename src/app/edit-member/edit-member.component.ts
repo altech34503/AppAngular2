@@ -5,12 +5,33 @@ import { MemberComponent } from '../member/member.component';
 import { FormsModule } from '@angular/forms'; // Import FormsModule for form handling
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { MatInputModule } from '@angular/material/input'; // For matInput
+import { MatRadioModule } from '@angular/material/radio'; // For mat-radio-button
+import { MatFormFieldModule } from '@angular/material/form-field'; // For mat-form-field
+import { MatCardModule } from '@angular/material/card'; // For mat-card
+import { MatButtonModule } from '@angular/material/button'; // For mat-raised-button
+import { MatIconModule } from '@angular/material/icon'; // For optional icons or custom styling (optional)
+import { MatTooltipModule } from '@angular/material/tooltip'; // For tooltips (optional)
+
 // Adjust the path as necessary
 
 @Component({
   selector: 'app-edit-member',
   standalone: true,
-  imports: [FormsModule, CommonModule, MemberComponent],
+  imports: [
+    FormsModule,
+    CommonModule,
+    MemberComponent,
+    MatInputModule,
+    MatRadioModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
+  ],
   templateUrl: './edit-member.component.html',
   styleUrl: './edit-member.component.css',
 })
