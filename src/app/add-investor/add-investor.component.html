@@ -1,114 +1,71 @@
-<h2 style="font-size: xx-large; color: brown">Add New Investor</h2>
-
 <form #investorForm="ngForm" (ngSubmit)="addInvestor()" class="investor-form">
-  <!-- Investor Name -->
+  <h2 class="mb-4 text-center">Add New Investor</h2>
+
   <mat-form-field appearance="fill" class="form-field">
-    <mat-label>Investor Name</mat-label>
+    <mat-label>Name</mat-label>
     <input
       matInput
-      type="text"
-      name="nameInvestor"
       [(ngModel)]="investor.name_Investor"
-      #nameInvestor="ngModel"
+      name="name_Investor"
       required
+      placeholder="Enter investor's name"
     />
-    <mat-error
-      *ngIf="
-        investorForm.controls['nameInvestor']?.invalid &&
-        investorForm.controls['nameInvestor']?.touched
-      "
-    >
-      Investor Name is required.
+    <mat-error *ngIf="investorForm.form.controls['name_Investor']?.invalid && investorForm.form.controls['name_Investor']?.touched">
+      Name is required.
     </mat-error>
   </mat-form-field>
 
-  <!-- Overview -->
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Overview</mat-label>
     <textarea
       matInput
-      name="overviewInvestor"
       [(ngModel)]="investor.overview_Investor"
-      #overviewInvestor="ngModel"
+      name="overview_Investor"
+      required
+      placeholder="Enter a brief overview"
     ></textarea>
+    <mat-error *ngIf="investorForm.form.controls['overview_Investor']?.invalid && investorForm.form.controls['overview_Investor']?.touched">
+      Overview is required.
+    </mat-error>
   </mat-form-field>
 
-  <!-- Country -->
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Country</mat-label>
-    <mat-select
-      name="countryId"
-      [(ngModel)]="investor.country_Id"
-      required
-      #countryId="ngModel"
-    >
+    <mat-select [(ngModel)]="investor.country_Id" name="country_Id" required>
       <mat-option value="1">USA</mat-option>
       <mat-option value="2">Canada</mat-option>
       <mat-option value="3">South Africa</mat-option>
     </mat-select>
-    <mat-error
-      *ngIf="
-        investorForm.controls['countryId']?.invalid &&
-        investorForm.controls['countryId']?.touched
-      "
-    >
-      Please select a country.
+    <mat-error *ngIf="investorForm.form.controls['country_Id']?.invalid && investorForm.form.controls['country_Id']?.touched">
+      Country is required.
     </mat-error>
   </mat-form-field>
 
-  <!-- Industry -->
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Industry</mat-label>
-    <mat-select
-      name="industryId"
-      [(ngModel)]="investor.industry_Id"
-      required
-      #industryId="ngModel"
-    >
+    <mat-select [(ngModel)]="investor.industry_Id" name="industry_Id" required>
       <mat-option value="1">Technology</mat-option>
       <mat-option value="2">Healthcare</mat-option>
       <mat-option value="3">Finance</mat-option>
     </mat-select>
-    <mat-error
-      *ngIf="
-        investorForm.controls['industryId']?.invalid &&
-        investorForm.controls['industryId']?.touched
-      "
-    >
-      Please select an industry.
+    <mat-error *ngIf="investorForm.form.controls['industry_Id']?.invalid && investorForm.form.controls['industry_Id']?.touched">
+      Industry is required.
     </mat-error>
   </mat-form-field>
 
-  <!-- Investment Size -->
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Investment Size</mat-label>
-    <mat-select
-      name="investmentSizeId"
-      [(ngModel)]="investor.investment_Size_Id"
-      required
-      #investmentSizeId="ngModel"
-    >
+    <mat-select [(ngModel)]="investor.investment_Size_Id" name="investment_Size_Id" required>
       <mat-option value="1">Small</mat-option>
       <mat-option value="2">Medium</mat-option>
       <mat-option value="3">Large</mat-option>
     </mat-select>
-    <mat-error
-      *ngIf="
-        investorForm.controls['investmentSizeId']?.invalid &&
-        investorForm.controls['investmentSizeId']?.touched
-      "
-    >
-      Please select an investment size.
+    <mat-error *ngIf="investorForm.form.controls['investment_Size_Id']?.invalid && investorForm.form.controls['investment_Size_Id']?.touched">
+      Investment size is required.
     </mat-error>
   </mat-form-field>
 
-  <!-- Submit Button -->
-  <button
-    mat-raised-button
-    color="primary"
-    type="submit"
-    [disabled]="investorForm.invalid"
-  >
+  <button mat-raised-button color="primary" type="submit" [disabled]="investorForm.invalid">
     Add Investor
   </button>
 </form>

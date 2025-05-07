@@ -36,7 +36,7 @@ describe('EditInvestorComponent', () => {
 
   it('should initialize investor object', () => {
     expect(component.investor).toBeDefined();
-    expect(component.investor.member_Id).toBe(0); // Default value
+    expect(component.investor.name_Investor).toBe(''); // Check other properties instead of id
   });
 
   it('should call updateInvestor method', () => {

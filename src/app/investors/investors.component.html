@@ -11,64 +11,21 @@
   </button>
 
   <div class="card-grid">
-    <mat-card *ngFor="let investor of investors; trackBy: trackByMemberId" class="investor-card">
+    <mat-card *ngFor="let investor of investors" class="investor-card">
       <mat-card-header>
         <mat-card-title>{{ investor.name_Investor }}</mat-card-title>
       </mat-card-header>
-
       <mat-card-content>
         <p>{{ investor.overview_Investor }}</p>
-        <p>
-          <strong>Country:</strong>
-          {{
-            investor.country_Id === 1
-              ? "USA"
-              : investor.country_Id === 2
-              ? "Canada"
-              : investor.country_Id === 3
-              ? "South Africa"
-              : "Unknown"
-          }}
-        </p>
-        <p>
-          <strong>Industry:</strong>
-          {{
-            investor.industry_Id === 1
-              ? "Technology"
-              : investor.industry_Id === 2
-              ? "Healthcare"
-              : investor.industry_Id === 3
-              ? "Finance"
-              : "Unknown"
-          }}
-        </p>
-        <p>
-          <strong>Investment Size:</strong>
-          {{
-            investor.investment_Size_Id === 1
-              ? "Small"
-              : investor.investment_Size_Id === 2
-              ? "Medium"
-              : investor.investment_Size_Id === 3
-              ? "Large"
-              : "Unknown"
-          }}
-        </p>
+        <p><strong>Country:</strong> {{ investor.country_Id }}</p>
+        <p><strong>Industry:</strong> {{ investor.industry_Id }}</p>
+        <p><strong>Investment Size:</strong> {{ investor.investment_Size_Id }}</p>
       </mat-card-content>
-
-      <mat-card-actions align="end" *ngIf="investor.member_Id !== undefined">
-        <button
-          mat-stroked-button
-          color="accent"
-          (click)="editInvestor(investor.member_Id)"
-        >
+      <mat-card-actions>
+        <button mat-stroked-button color="accent" *ngIf="investor.id !== undefined" (click)="editInvestor(investor.id)">
           <mat-icon>edit</mat-icon> Edit
         </button>
-        <button
-          mat-stroked-button
-          color="warn"
-          (click)="deleteInvestor(investor.member_Id)"
-        >
+        <button mat-stroked-button color="warn" *ngIf="investor.id !== undefined" (click)="deleteInvestor(investor.id)">
           <mat-icon>delete</mat-icon> Delete
         </button>
       </mat-card-actions>

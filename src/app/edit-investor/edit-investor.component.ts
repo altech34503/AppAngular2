@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { InvestorsService } from '../services/investors.service';
 import { Investor } from '../models/investor';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,7 +15,7 @@ import { MatOptionModule } from '@angular/material/core';
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule, // Required for template-driven forms
+    FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -26,15 +26,8 @@ import { MatOptionModule } from '@angular/material/core';
   styleUrls: ['./edit-investor.component.css'],
 })
 export class EditInvestorComponent implements OnInit {
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private investorsService: InvestorsService
-  ) {}
-
-  // Initialize investor object
   investor: Investor = {
-    member_Id: 0,
+    id: 0, // Default value for id
     name_Investor: '',
     overview_Investor: '',
     country_Id: 0,
@@ -42,31 +35,36 @@ export class EditInvestorComponent implements OnInit {
     investment_Size_Id: 0,
   };
 
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private investorsService: InvestorsService
+  ) {}
+
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    if (id) {
-      this.investorsService.getInvestorById(id).subscribe(
-        (response) => {
-          this.investor = response;
-          console.log('Investor loaded:', this.investor); // Debugging statement
-        },
-        (error) => {
-          console.error('Error loading investor:', error);
-        }
-      );
+    console.log('Retrieved id from route:', id); // Debugging statement
+
+    if (isNaN(id) || id <= 0) {
+      console.error('Invalid id provided in the route.');
+      this.router.navigate(['/investors']); // Redirect to the investors list
+      return;
     }
+
+    this.investorsService.getInvestorById(id).subscribe(
+      (response) => {
+        this.investor = response; // Populate the investor object
+        console.log('Investor loaded:', this.investor); // Debugging statement
+      },
+      (error) => {
+        console.error('Error loading investor:', error);
+      }
+    );
   }
 
-  updateInvestor() {
-    if (
-      this.investor.name_Investor &&
-      this.investor.overview_Investor &&
-      this.investor.country_Id &&
-      this.investor.industry_Id &&
-      this.investor.investment_Size_Id
-    ) {
-      console.log('Form Submitted:', this.investor); // Debugging statement
-      this.investorsService.updateInvestor(this.investor).subscribe(
+  updateInvestor(): void {
+    if (this.investor.id) {
+      this.investorsService.updateInvestor(this.investor.id, this.investor).subscribe(
         (response) => {
           console.log('Investor updated successfully:', response);
           this.router.navigate(['/investors']); // Redirect to the investors list
@@ -76,7 +74,7 @@ export class EditInvestorComponent implements OnInit {
         }
       );
     } else {
-      console.error('Form is invalid. Please fill out all required fields.');
+      console.error('Cannot update investor: ID is missing.');
     }
   }
 }

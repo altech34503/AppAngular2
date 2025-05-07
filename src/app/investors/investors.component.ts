@@ -37,26 +37,8 @@ export class InvestorsComponent implements OnInit {
     // Fetch all investors on component initialization
     this.investorsService.getInvestors().subscribe((investors: Investor[]) => {
       console.log('Received investors:', investors);
-      this.investors = investors.map((investor) => {
-        // Ensure member_Id is assigned
-        if (!investor.member_Id) {
-          this.fetchMemberIdForInvestor(investor);
-        }
-        return investor;
-      });
+      this.investors = investors;
     });
-  }
-
-  fetchMemberIdForInvestor(investor: Investor): void {
-    this.investorsService.getNextMemberId().subscribe(
-      (nextMemberId: number) => {
-        investor.member_Id = nextMemberId;
-        console.log(`Assigned member_Id ${nextMemberId} to investor`, investor);
-      },
-      (error: any) => {
-        console.error('Error fetching next member_Id:', error);
-      }
-    );
   }
 
   createInvestor(): void {
@@ -64,31 +46,17 @@ export class InvestorsComponent implements OnInit {
     this.router.navigate(['/add-investor']);
   }
 
-  editInvestor(memberId: number | undefined): void {
-    if (memberId === undefined) {
-      console.error('Cannot edit investor: member_Id is undefined');
-      return;
-    }
-    this.router.navigate(['/edit-investor', memberId]);
+  editInvestor(id: number): void {
+    this.router.navigate(['/edit-investor', id]);
   }
 
-  deleteInvestor(memberId: number | undefined): void {
-    if (memberId === undefined) {
-      console.error('Cannot delete investor: member_Id is undefined');
-      return;
-    }
-    console.log('Deleting investor with ID:', memberId);
+  deleteInvestor(id: number): void {
+    console.log('Deleting investor with ID:', id);
     if (confirm('Are you sure you want to delete this investor?')) {
-      this.investorsService.deleteInvestor(memberId).subscribe(() => {
-        this.investors = this.investors.filter(
-          (investor) => investor.member_Id !== memberId
-        );
-        console.log(`Investor with ID ${memberId} deleted.`);
+      this.investorsService.deleteInvestor(id).subscribe(() => {
+        this.investors = this.investors.filter((investor) => investor.id !== id);
+        console.log(`Investor with ID ${id} deleted.`);
       });
     }
-  }
-
-  trackByMemberId(index: number, item: Investor): number {
-    return item.member_Id ?? index; // Use index as fallback if member_Id is undefined
   }
 }

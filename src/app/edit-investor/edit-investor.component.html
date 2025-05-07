@@ -1,108 +1,42 @@
-<h2 style="font-size: xx-large; color: brown">Edit Investor</h2>
-
 <form #investorForm="ngForm" (ngSubmit)="updateInvestor()" class="investor-form">
-  <!-- Investor Name -->
+  <h2 class="mb-4 text-center">Edit Investor</h2>
+
   <mat-form-field appearance="fill" class="form-field">
-    <mat-label>Investor Name</mat-label>
-    <input
-      matInput
-      [(ngModel)]="investor.name_Investor"
-      name="name_Investor"
-      required
-    />
-    <mat-error
-      *ngIf="
-        investorForm.controls['nameInvestor']?.invalid &&
-        investorForm.controls['nameInvestor']?.touched
-      "
-    >
-      Please enter a name for the investor.
-    </mat-error>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="investor.name_Investor" name="name_Investor" required />
   </mat-form-field>
 
-  <!-- Overview -->
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Overview</mat-label>
-    <textarea
-      matInput
-      [(ngModel)]="investor.overview_Investor"
-      name="overview_Investor"
-    ></textarea>
+    <textarea matInput [(ngModel)]="investor.overview_Investor" name="overview_Investor" required></textarea>
   </mat-form-field>
 
-  <!-- Country -->
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Country</mat-label>
-    <mat-select
-      name="country_Id"
-      [(ngModel)]="investor.country_Id"
-      required
-    >
-      <mat-option [value]="1">USA</mat-option>
-      <mat-option [value]="2">Canada</mat-option>
-      <mat-option [value]="3">South Africa</mat-option>
+    <mat-select [(ngModel)]="investor.country_Id" name="country_Id" required>
+      <mat-option value="1">USA</mat-option>
+      <mat-option value="2">Canada</mat-option>
+      <mat-option value="3">South Africa</mat-option>
     </mat-select>
-    <mat-error
-      *ngIf="
-        investorForm.controls['countryId']?.invalid &&
-        investorForm.controls['countryId']?.touched
-      "
-    >
-      Please select a country.
-    </mat-error>
   </mat-form-field>
 
-  <!-- Industry -->
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Industry</mat-label>
-    <mat-select
-      name="industryId"
-      [(ngModel)]="investor.industry_Id"
-      required
-    >
-      <mat-option [value]="1">Technology</mat-option>
-      <mat-option [value]="2">Healthcare</mat-option>
-      <mat-option [value]="3">Finance</mat-option>
+    <mat-select [(ngModel)]="investor.industry_Id" name="industry_Id" required>
+      <mat-option value="1">Technology</mat-option>
+      <mat-option value="2">Healthcare</mat-option>
+      <mat-option value="3">Finance</mat-option>
     </mat-select>
-    <mat-error
-      *ngIf="
-        investorForm.controls['industryId']?.invalid &&
-        investorForm.controls['industryId']?.touched
-      "
-    >
-      Please select an industry.
-    </mat-error>
   </mat-form-field>
 
-  <!-- Investment Size -->
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Investment Size</mat-label>
-    <mat-select
-      name="investmentSizeId"
-      [(ngModel)]="investor.investment_Size_Id"
-      required
-    >
-      <mat-option [value]="1">Small</mat-option>
-      <mat-option [value]="2">Medium</mat-option>
-      <mat-option [value]="3">Large</mat-option>
+    <mat-select [(ngModel)]="investor.investment_Size_Id" name="investment_Size_Id" required>
+      <mat-option value="1">Small</mat-option>
+      <mat-option value="2">Medium</mat-option>
+      <mat-option value="3">Large</mat-option>
     </mat-select>
-    <mat-error
-      *ngIf="
-        investorForm.controls['investmentSizeId']?.invalid &&
-        investorForm.controls['investmentSizeId']?.touched
-      "
-    >
-      Please select an investment size.
-    </mat-error>
   </mat-form-field>
 
-  <!-- Submit Button -->
-  <button
-    mat-raised-button
-    color="primary"
-    type="submit"
-    [disabled]="investorForm.invalid"
-  >
-    Update Investor
-  </button>
+  <button mat-raised-button color="primary" type="submit">Update Investor</button>
 </form>

@@ -10,6 +10,6 @@ import { MatIcon } from '@angular/material/icon';
   standalone: true,
   imports: [RouterOutlet, RouterLink, MatCardModule, MatToolbarModule, MatIcon],
   templateUrl: './homepage.component.html',
-  styleUrl: './homepage.component.css',
+  styleUrls: ['./homepage.component.css'],
 })
 export class HomepageComponent {}
