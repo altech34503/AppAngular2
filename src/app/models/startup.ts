@@ -1,5 +1,5 @@
 export interface Startup {
-  MemberId: number;
+  memberId: number;
   nameStartup: string;
   overviewStartup: string;
   countryId: number;

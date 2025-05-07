@@ -1,0 +1,73 @@
+<form #startupForm="ngForm" (ngSubmit)="updateStartup(startupForm)">
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label>Startup Name</mat-label>
+    <input matInput [(ngModel)]="startup.nameStartup" name="name" required />
+    <mat-error
+      *ngIf="
+        startupForm.controls['name']?.invalid &&
+        startupForm.controls['name']?.touched
+      "
+    >
+      Please enter a name for the startup.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label>Country</mat-label>
+    <mat-select name="countryId" [(ngModel)]="startup.countryId" required>
+      <mat-option [value]="1">USA</mat-option>
+      <mat-option [value]="2">Canada</mat-option>
+      <mat-option [value]="3">South Africa</mat-option>
+    </mat-select>
+    <mat-error
+      *ngIf="
+        startupForm.controls['countryId']?.invalid &&
+        startupForm.controls['countryId']?.touched
+      "
+    >
+      Please select a country.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label>Industry</mat-label>
+    <mat-select name="industryId" [(ngModel)]="startup.industryId" required>
+      <mat-option [value]="1">Cinema</mat-option>
+      <mat-option [value]="2">Art</mat-option>
+      <mat-option [value]="3">Music</mat-option>
+    </mat-select>
+    <mat-error
+      *ngIf="
+        startupForm.controls['industryId']?.invalid &&
+        startupForm.controls['industryId']?.touched
+      "
+    >
+      Please select an industry.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label>Investment Size</mat-label>
+    <mat-select
+      name="investmentSizeId"
+      [(ngModel)]="startup.investmentSizeId"
+      required
+    >
+      <mat-option [value]="1">Small</mat-option>
+      <mat-option [value]="2">Medium</mat-option>
+      <mat-option [value]="3">Large</mat-option>
+    </mat-select>
+    <mat-error
+      *ngIf="
+        startupForm.controls['investmentSizeId']?.invalid &&
+        startupForm.controls['investmentSizeId']?.touched
+      "
+    >
+      Please select an investment size.
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button type="submit" [disabled]="startupForm.invalid">
+    Update Startup
+  </button>
+</form>

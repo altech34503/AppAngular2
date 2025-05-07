@@ -11,7 +11,7 @@
   </button>
 
   <div class="card-grid">
-    @for (s of startups; track s.MemberId) {
+    @for (s of startups; track s.memberId) {
     <mat-card class="startup-card">
       <mat-card-header>
         <mat-card-title>{{ s.nameStartup }}</mat-card-title>
@@ -19,23 +19,56 @@
 
       <mat-card-content>
         <p>{{ s.overviewStartup }}</p>
-        <p><strong>Country:</strong> {{ s.countryId }}</p>
-        <p><strong>Industry:</strong> {{ s.industryId }}</p>
-        <p><strong>Investment Size:</strong> {{ s.investmentSizeId }}</p>
+        <p>
+          <strong>Country:</strong>
+          {{
+            s.countryId === 1
+              ? "USA"
+              : s.countryId === 2
+              ? "Canada"
+              : s.countryId === 3
+              ? "South Africa"
+              : "Unknown"
+          }}
+        </p>
+        <p>
+          <strong>Industry:</strong>
+          {{
+            s.industryId === 1
+              ? "Cinema"
+              : s.industryId === 2
+              ? "Art"
+              : s.industryId === 3
+              ? "Music"
+              : "Unknown"
+          }}
+        </p>
+        <p>
+          <strong>Investment Size:</strong>
+          {{
+            s.investmentSizeId === 1
+              ? "Small"
+              : s.investmentSizeId === 2
+              ? "Medium"
+              : s.investmentSizeId === 3
+              ? "Large"
+              : "Unknown"
+          }}
+        </p>
       </mat-card-content>
 
       <mat-card-actions align="end">
         <button
           mat-stroked-button
           color="accent"
-          (click)="editStartup(s.MemberId)"
+          (click)="editStartup(s.memberId)"
         >
           <mat-icon>edit</mat-icon> Edit
         </button>
         <button
           mat-stroked-button
           color="warn"
-          (click)="deleteStartup(s.MemberId)"
+          (click)="deleteStartup(s.memberId)"
         >
           <mat-icon>delete</mat-icon> Delete
         </button>

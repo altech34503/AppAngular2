@@ -29,7 +29,7 @@ export class StartupsService {
   }
 
   updateStartup(startup: Startup): Observable<any> {
-    return this.http.put(`${this.baseUrl}/startups`, startup);
+    return this.http.put(`${this.baseUrl}/startup`, startup);
   }
 
   addStartup(startup: Startup): Observable<any> {

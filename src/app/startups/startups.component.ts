@@ -32,18 +32,19 @@ export class StartupsComponent implements OnInit {
   startups?: Startup[] = [];
   ngOnInit(): void {
     this.startupService.getStartups().subscribe((startup) => {
-      console.log('Received startups:', startup); // 👈 Add this
+      console.log('Received startups:', startup);
       this.startups = startup;
     });
   }
 
   deleteStartup(id: number): void {
-    if (confirm('Are you sure you want to delete this member?')) {
+    console.log('Deleting startup with ID:', id); // Log ID being passed
+    if (confirm('Are you sure you want to delete this startup?')) {
       this.startupService.deleteStartup(id).subscribe(() => {
         this.startups = (this.startups ?? []).filter(
-          (startup) => startup.MemberId !== id
+          (startup) => startup.memberId !== id
         );
-        console.log(`Member with ID ${id} deleted.`);
+        console.log(`Startup with ID ${id} deleted.`);
       });
     }
   }
@@ -54,5 +55,9 @@ export class StartupsComponent implements OnInit {
 
   createStartup() {
     this.router.navigate(['/add-startup']); // Navigate to the add member route
+  }
+
+  trackByMemberId(index: number, item: Startup): number {
+    return item.memberId;
   }
 }
