@@ -1,84 +1,95 @@
-<form #memberForm="ngForm" (ngSubmit)="addMember()" class="member-form">
+<<<<<<<<< Temporary merge branch 1
+<form [formGroup]="memberForm" (ngSubmit)="addMember()" class="member-form">
   <h2>Add New Member</h2>
+  =========
+  <form #memberForm="ngForm" (ngSubmit)="addMember()" class="member-form">
+    <h2 style="font-size: xx-large; color: brown">
+      Sign up in the form below!
+    </h2>
+    >>>>>>>>> Temporary merge branch 2
 
-  <!-- Member Type -->
-  <mat-radio-group aria-label="Select member type" formControlName="memberType">
-    <mat-radio-button value="Investor">Investor</mat-radio-button>
-    <mat-radio-button value="Startup">Startup</mat-radio-button>
-  </mat-radio-group>
-  <mat-error
-    *ngIf="
-      memberForm.get('memberType')?.invalid &&
-      memberForm.get('memberType')?.touched
-    "
-  >
-    Member type is required.
-  </mat-error>
-
-  <!-- Email -->
-  <mat-form-field appearance="fill" class="form-field">
-    <mat-label>Email</mat-label>
-    <input matInput type="email" formControlName="memberEmail" />
+    <!-- Member Type -->
+    <mat-radio-group
+      aria-label="Select member type"
+      formControlName="memberType"
+    >
+      <mat-radio-button value="Investor">Investor</mat-radio-button>
+      <mat-radio-button value="Startup">Startup</mat-radio-button>
+    </mat-radio-group>
     <mat-error
       *ngIf="
-        memberForm.get('memberEmail')?.invalid &&
-        memberForm.get('memberEmail')?.touched
+        memberForm.get('memberType')?.invalid &&
+        memberForm.get('memberType')?.touched
       "
     >
-      <span *ngIf="memberForm.get('memberEmail')?.errors?.['required']"
-        >Email is required.</span
-      >
-      <span *ngIf="memberForm.get('memberEmail')?.errors?.['email']"
-        >Enter a valid email address.</span
-      >
+      Member type is required.
     </mat-error>
-  </mat-form-field>
 
-  <!-- Address -->
-  <mat-form-field appearance="fill" class="form-field">
-    <mat-label>Address</mat-label>
-    <input matInput type="text" formControlName="memberAddress" />
-    <mat-error
-      *ngIf="
-        memberForm.get('memberAddress')?.invalid &&
-        memberForm.get('memberAddress')?.touched
-      "
+    <!-- Email -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="memberEmail" />
+      <mat-error
+        *ngIf="
+          memberForm.get('memberEmail')?.invalid &&
+          memberForm.get('memberEmail')?.touched
+        "
+      >
+        <span *ngIf="memberForm.get('memberEmail')?.errors?.['required']"
+          >Email is required.</span
+        >
+        <span *ngIf="memberForm.get('memberEmail')?.errors?.['email']"
+          >Enter a valid email address.</span
+        >
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Address -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Address</mat-label>
+      <input matInput type="text" formControlName="memberAddress" />
+      <mat-error
+        *ngIf="
+          memberForm.get('memberAddress')?.invalid &&
+          memberForm.get('memberAddress')?.touched
+        "
+      >
+        <span *ngIf="memberForm.get('memberAddress')?.errors?.['required']"
+          >Address is required.</span
+        >
+        <span *ngIf="memberForm.get('memberAddress')?.errors?.['pattern']">
+          Address must be in the format 'City, Country'.
+        </span>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Phone -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Phone</mat-label>
+      <input matInput type="text" formControlName="memberPhone" />
+      <mat-error
+        *ngIf="
+          memberForm.get('memberPhone')?.invalid &&
+          memberForm.get('memberPhone')?.touched
+        "
+      >
+        <span *ngIf="memberForm.get('memberPhone')?.errors?.['required']"
+          >Phone number is required.</span
+        >
+        <span *ngIf="memberForm.get('memberPhone')?.errors?.['pattern']">
+          Phone number must include a country code (e.g., +254 712345678).
+        </span>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Submit Button -->
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="memberForm.invalid"
     >
-      <span *ngIf="memberForm.get('memberAddress')?.errors?.['required']"
-        >Address is required.</span
-      >
-      <span *ngIf="memberForm.get('memberAddress')?.errors?.['pattern']">
-        Address must be in the format 'City, Country'.
-      </span>
-    </mat-error>
-  </mat-form-field>
-
-  <!-- Phone -->
-  <mat-form-field appearance="fill" class="form-field">
-    <mat-label>Phone</mat-label>
-    <input matInput type="text" formControlName="memberPhone" />
-    <mat-error
-      *ngIf="
-        memberForm.get('memberPhone')?.invalid &&
-        memberForm.get('memberPhone')?.touched
-      "
-    >
-      <span *ngIf="memberForm.get('memberPhone')?.errors?.['required']"
-        >Phone number is required.</span
-      >
-      <span *ngIf="memberForm.get('memberPhone')?.errors?.['pattern']">
-        Phone number must include a country code (e.g., +254 712345678).
-      </span>
-    </mat-error>
-  </mat-form-field>
-
-  <!-- Submit Button -->
-  <button
-    mat-raised-button
-    color="primary"
-    type="submit"
-    [disabled]="memberForm.invalid"
-  >
-    Add Member
-  </button>
+      Add Member
+    </button>
+  </form>
 </form>
