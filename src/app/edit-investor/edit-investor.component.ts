@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { COUNTRIES } from '../utils/countries';
 
 @Component({
   selector: 'app-edit-investor',
@@ -34,6 +35,8 @@ export class EditInvestorComponent implements OnInit {
     industry_Id: 0,
     investment_Size_Id: 0,
   };
+
+  countries = COUNTRIES; // Use the imported list of countries
 
   constructor(
     private route: ActivatedRoute,
@@ -64,7 +67,12 @@ export class EditInvestorComponent implements OnInit {
 
   updateInvestor(): void {
     if (this.investor.id) {
-      console.log('Payload being sent:', this.investor); // Debugging log
+      // Ensure numeric fields are numbers
+      this.investor.country_Id = Number(this.investor.country_Id);
+      this.investor.industry_Id = Number(this.investor.industry_Id);
+      this.investor.investment_Size_Id = Number(this.investor.investment_Size_Id);
+
+      console.log('Payload being sent:', this.investor); // Log the payload
       this.investorsService.updateInvestor(this.investor).subscribe(
         (response) => {
           console.log('Investor updated successfully:', response);

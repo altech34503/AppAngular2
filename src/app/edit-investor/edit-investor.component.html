@@ -14,27 +14,27 @@
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Country</mat-label>
     <mat-select [(ngModel)]="investor.country_Id" name="country_Id" required>
-      <mat-option value="1">USA</mat-option>
-      <mat-option value="2">Canada</mat-option>
-      <mat-option value="3">South Africa</mat-option>
+      <mat-option *ngFor="let country of countries" [value]="country.id">
+        {{ country.name }}
+      </mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Industry</mat-label>
     <mat-select [(ngModel)]="investor.industry_Id" name="industry_Id" required>
-      <mat-option value="1">Technology</mat-option>
-      <mat-option value="2">Healthcare</mat-option>
-      <mat-option value="3">Finance</mat-option>
+      <mat-option [value]="1">Technology</mat-option>
+      <mat-option [value]="2">Healthcare</mat-option>
+      <mat-option [value]="3">Finance</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Investment Size</mat-label>
     <mat-select [(ngModel)]="investor.investment_Size_Id" name="investment_Size_Id" required>
-      <mat-option value="1">Small</mat-option>
-      <mat-option value="2">Medium</mat-option>
-      <mat-option value="3">Large</mat-option>
+      <mat-option [value]="1">Small</mat-option>
+      <mat-option [value]="2">Medium</mat-option>
+      <mat-option [value]="3">Large</mat-option>
     </mat-select>
   </mat-form-field>
 

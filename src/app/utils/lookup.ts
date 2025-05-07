@@ -1,8 +1,9 @@
-export const COUNTRY_MAP: { [key: number]: string } = {
-  1: 'USA',
-  2: 'Canada',
-  3: 'South Africa',
-};
+import { COUNTRIES } from './countries';
+
+export const COUNTRY_MAP = COUNTRIES.reduce((map, country) => {
+  map[country.id] = country.name;
+  return map;
+}, {} as { [key: number]: string });
 
 export const INDUSTRY_MAP: { [key: number]: string } = {
   1: 'Technology',
