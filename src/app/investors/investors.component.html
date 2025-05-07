@@ -17,9 +17,9 @@
       </mat-card-header>
       <mat-card-content>
         <p>{{ investor.overview_Investor }}</p>
-        <p><strong>Country:</strong> {{ investor.country_Id }}</p>
-        <p><strong>Industry:</strong> {{ investor.industry_Id }}</p>
-        <p><strong>Investment Size:</strong> {{ investor.investment_Size_Id }}</p>
+        <p><strong>Country:</strong> {{ COUNTRY_MAP[investor.country_Id] }}</p>
+        <p><strong>Industry:</strong> {{ INDUSTRY_MAP[investor.industry_Id] }}</p>
+        <p><strong>Investment Size:</strong> {{ INVESTMENT_SIZE_MAP[investor.investment_Size_Id] }}</p>
       </mat-card-content>
       <mat-card-actions>
         <button mat-stroked-button color="accent" *ngIf="investor.id !== undefined" (click)="editInvestor(investor.id)">

@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { InvestorsService } from '../services/investors.service';
+import { COUNTRY_MAP, INDUSTRY_MAP, INVESTMENT_SIZE_MAP } from '../utils/lookup';
 
 @Component({
   selector: 'app-investors',
@@ -27,6 +28,9 @@ import { InvestorsService } from '../services/investors.service';
 })
 export class InvestorsComponent implements OnInit {
   investors: Investor[] = []; // Initialize the investors array
+  COUNTRY_MAP = COUNTRY_MAP; // Expose the mappings to the template
+  INDUSTRY_MAP = INDUSTRY_MAP;
+  INVESTMENT_SIZE_MAP = INVESTMENT_SIZE_MAP;
 
   constructor(
     private investorsService: InvestorsService,
