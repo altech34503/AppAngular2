@@ -12,6 +12,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatOptionModule } from '@angular/material/core';
 import { MatLabel } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
+import { COUNTRIES } from '../utils/countries';
+import { INDUSTRIES } from '../utils/industries';
+import { INVESTMENT_SIZE } from '../utils/investment-sizes';
 
 @Component({
   selector: 'app-add-startup',
@@ -36,6 +39,10 @@ export class AddStartupComponent {
     private router: Router,
     private startupService: StartupsService
   ) {}
+
+  countries = COUNTRIES; // Assuming COUNTRIES is an array of country objects
+  industries = INDUSTRIES;
+  investments = INVESTMENT_SIZE;
 
   // Initialize member as an empty array
   startup: Startup = {

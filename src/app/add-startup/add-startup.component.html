@@ -45,15 +45,10 @@
   <!-- Country -->
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Country</mat-label>
-    <mat-select
-      name="countryId"
-      [(ngModel)]="startup.countryId"
-      required
-      #countryId="ngModel"
-    >
-      <mat-option value="1">USA</mat-option>
-      <mat-option value="2">Canada</mat-option>
-      <mat-option value="3">South Africa</mat-option>
+    <mat-select [(ngModel)]="startup.countryId" name="countryId" required>
+      <mat-option *ngFor="let country of countries" [value]="country.id">
+        {{ country.name }}
+      </mat-option>
     </mat-select>
     <mat-error
       *ngIf="
@@ -68,15 +63,15 @@
   <!-- Industry -->
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Industry</mat-label>
-    <mat-select name="industryId" [(ngModel)]="startup.industryId" required>
-      <mat-option value="1">Cinema</mat-option>
-      <mat-option value="2">Art</mat-option>
-      <mat-option value="3">Music</mat-option>
+    <mat-select [(ngModel)]="startup.industryId" name="industryId" required>
+      <mat-option *ngFor="let industry of industries" [value]="industry.id">
+        {{ industry.name }}
+      </mat-option>
     </mat-select>
     <mat-error
       *ngIf="
-        startupForm.controls['industryId']?.invalid &&
-        startupForm.controls['industryId']?.touched
+        startupForm.controls['countryId']?.invalid &&
+        startupForm.controls['countryId']?.touched
       "
     >
       Please select an industry.
@@ -87,13 +82,13 @@
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Investment Size</mat-label>
     <mat-select
-      name="investmentSizeId"
       [(ngModel)]="startup.investmentSizeId"
+      name="investmentSizeId"
       required
     >
-      <mat-option value="1">Small</mat-option>
-      <mat-option value="2">Medium</mat-option>
-      <mat-option value="3">Large</mat-option>
+      <mat-option *ngFor="let size of investments" [value]="size.id">
+        {{ size.name }}
+      </mat-option>
     </mat-select>
     <mat-error
       *ngIf="

@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { COUNTRIES } from '../utils/countries';
+import { INDUSTRIES } from '../utils/industries';
+import { INVESTMENT_SIZE } from '../utils/investment-sizes';
 
 @Component({
   selector: 'app-edit-investor',
@@ -37,6 +39,8 @@ export class EditInvestorComponent implements OnInit {
   };
 
   countries = COUNTRIES; // Use the imported list of countries
+  industries = INDUSTRIES;
+  investments = INVESTMENT_SIZE; // Use the imported list of investment sizes
 
   constructor(
     private route: ActivatedRoute,

@@ -7,6 +7,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { StartupsService } from '../services/startups.service';
+import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule for HTTP requests
+import {
+  COUNTRY_MAP,
+  INDUSTRY_MAP,
+  INVESTMENT_SIZE_MAP,
+} from '../utils/lookup'; // Import lookup maps
 
 @Component({
   selector: 'app-member',
@@ -30,6 +36,10 @@ export class StartupsComponent implements OnInit {
   // Initialize member as an empty array
 
   startups?: Startup[] = [];
+  COUNTRY_MAP = COUNTRY_MAP; // Expose the mappings to the template
+  INDUSTRY_MAP = INDUSTRY_MAP;
+  INVESTMENT_SIZE_MAP = INVESTMENT_SIZE_MAP;
+
   ngOnInit(): void {
     this.startupService.getStartups().subscribe((startup) => {
       console.log('Received startups:', startup);

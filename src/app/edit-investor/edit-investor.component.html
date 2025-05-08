@@ -1,14 +1,28 @@
-<form #investorForm="ngForm" (ngSubmit)="updateInvestor()" class="investor-form">
+<form
+  #investorForm="ngForm"
+  (ngSubmit)="updateInvestor()"
+  class="investor-form"
+>
   <h2 class="mb-4 text-center">Edit Investor</h2>
 
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Name</mat-label>
-    <input matInput [(ngModel)]="investor.name_Investor" name="name_Investor" required />
+    <input
+      matInput
+      [(ngModel)]="investor.name_Investor"
+      name="name_Investor"
+      required
+    />
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Overview</mat-label>
-    <textarea matInput [(ngModel)]="investor.overview_Investor" name="overview_Investor" required></textarea>
+    <textarea
+      matInput
+      [(ngModel)]="investor.overview_Investor"
+      name="overview_Investor"
+      required
+    ></textarea>
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="form-field">
@@ -18,25 +32,55 @@
         {{ country.name }}
       </mat-option>
     </mat-select>
+    <mat-error
+      *ngIf="
+        investorForm.form.controls['country_Id']?.invalid &&
+        investorForm.form.controls['country_Id']?.touched
+      "
+    >
+      Country is required.
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Industry</mat-label>
     <mat-select [(ngModel)]="investor.industry_Id" name="industry_Id" required>
-      <mat-option [value]="1">Technology</mat-option>
-      <mat-option [value]="2">Healthcare</mat-option>
-      <mat-option [value]="3">Finance</mat-option>
+      <mat-option *ngFor="let industry of industries" [value]="industry.id">
+        {{ industry.name }}
+      </mat-option>
     </mat-select>
+    <mat-error
+      *ngIf="
+        investorForm.form.controls['industry_Id']?.invalid &&
+        investorForm.form.controls['industry_Id']?.touched
+      "
+    >
+      Industry is required.
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Investment Size</mat-label>
-    <mat-select [(ngModel)]="investor.investment_Size_Id" name="investment_Size_Id" required>
-      <mat-option [value]="1">Small</mat-option>
-      <mat-option [value]="2">Medium</mat-option>
-      <mat-option [value]="3">Large</mat-option>
+    <mat-select
+      [(ngModel)]="investor.investment_Size_Id"
+      name="investment_Size_Id"
+      required
+    >
+      <mat-option *ngFor="let size of investments" [value]="size.id">
+        {{ size.name }}
+      </mat-option>
     </mat-select>
+    <mat-error
+      *ngIf="
+        investorForm.form.controls['investment_Size_Id']?.invalid &&
+        investorForm.form.controls['investment_Size_Id']?.touched
+      "
+    >
+      Investment size is required.
+    </mat-error>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">Update Investor</button>
+  <button mat-raised-button color="primary" type="submit">
+    Update Investor
+  </button>
 </form>

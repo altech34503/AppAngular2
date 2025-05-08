@@ -9,6 +9,9 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { COUNTRIES } from '../utils/countries';
+import { INDUSTRIES } from '../utils/industries';
+import { INVESTMENT_SIZE } from '../utils/investment-sizes';
 
 @Component({
   selector: 'app-add-investor',
@@ -26,6 +29,9 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./add-investor.component.css'],
 })
 export class AddInvestorComponent {
+  countries = COUNTRIES; // Assuming COUNTRIES is an array of country objects
+  industries = INDUSTRIES;
+  investments = INVESTMENT_SIZE;
   investor: Investor = {
     name_Investor: '',
     overview_Investor: '',
