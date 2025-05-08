@@ -19,41 +19,11 @@
 
       <mat-card-content>
         <p>{{ s.overviewStartup }}</p>
-        <p>
-          <strong>Country:</strong>
-          {{
-            s.countryId === 1
-              ? "USA"
-              : s.countryId === 2
-              ? "Canada"
-              : s.countryId === 3
-              ? "South Africa"
-              : "Unknown"
-          }}
-        </p>
-        <p>
-          <strong>Industry:</strong>
-          {{
-            s.industryId === 1
-              ? "Cinema"
-              : s.industryId === 2
-              ? "Art"
-              : s.industryId === 3
-              ? "Music"
-              : "Unknown"
-          }}
-        </p>
+        <p><strong>Country:</strong> {{ COUNTRY_MAP[s.countryId] }}</p>
+        <p><strong>Industry:</strong> {{ INDUSTRY_MAP[s.industryId] }}</p>
         <p>
           <strong>Investment Size:</strong>
-          {{
-            s.investmentSizeId === 1
-              ? "Small"
-              : s.investmentSizeId === 2
-              ? "Medium"
-              : s.investmentSizeId === 3
-              ? "Large"
-              : "Unknown"
-          }}
+          {{ INVESTMENT_SIZE_MAP[s.investmentSizeId] }}
         </p>
       </mat-card-content>
 
